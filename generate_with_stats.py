@@ -127,13 +127,13 @@ t.gen_text("\x1b[96m=== Tech Stack ===\x1b[0m", row_num=3)
 t.clone_frame(3)
 
 skills = [
-    ("\x1b[94mCloud:\x1b[0m       ", "AWS, GCP, OCI, Cloudflare"),
-    ("\x1b[94mDevOps:\x1b[0m      ", "Terraform, Kubernetes, Docker, Git"),
-    ("\x1b[94mCI/CD:\x1b[0m       ", "GitLab, GitHub Actions"),
-    ("\x1b[94mMonitoring:\x1b[0m  ", "Grafana, Prometheus, Jaeger, Loki"),
-    ("\x1b[94mTools:\x1b[0m       ", "Postman, RabbitMQ, MongoDB"),
-    ("\x1b[94mOS:\x1b[0m          ", "macOS, Debian"),
-    ("\x1b[94mLanguages:\x1b[0m   ", "Java, Python"),
+    ("\x1b[94mFrameworks:\x1b[0m  ", "Flask, Django"),
+    ("\x1b[94mEditors:\x1b[0m     ", "VS Code, PyCharm, RustRover, CLion, Neovim"),
+    ("\x1b[94mDevOps:\x1b[0m      ", "Git & GitHub, Docker, GitHub Actions"),
+    ("\x1b[94mDatabases:\x1b[0m   ", "PostgreSQL, SQLite"),
+    ("\x1b[94mTools:\x1b[0m       ", "Postman"),
+    ("\x1b[94mOS:\x1b[0m          ", "Linux, macOS, Windows"),
+    ("\x1b[94mPlatforms:\x1b[0m   ", "LeetCode, Codewars"),
 ]
 
 for i, (label, value) in enumerate(skills):
