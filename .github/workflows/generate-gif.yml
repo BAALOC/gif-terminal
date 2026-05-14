@@ -40,12 +40,7 @@ jobs:
       - name: Generate GIF
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          # Automatically injected by GitHub — scripts use this to detect the username.
-          # No manual changes needed when forking.
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
-          # Select theme via repository variable: Settings → Secrets and variables → Actions → Variables tab → THEME
-          # Valid values: default | macos | debian   (fallback: default)
-          # Manual runs (workflow_dispatch) can also pass a theme via the input above.
           THEME: ${{ vars.THEME || inputs.theme || 'default' }}
         run: |
           echo "Theme: $THEME  |  User: $GITHUB_REPOSITORY_OWNER"
@@ -55,10 +50,14 @@ jobs:
             *)       python generate_liquid_glass.py ;;
           esac
 
+          GIFOS_GENERAL_COLOR_SCHEME=catppuccin-latte \
+          GIFOS_FILES_OUTPUT_GIF_NAME=output_light \
+          python generate_with_stats.py
+
       - name: Commit and push if changed
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add output.gif
+          git add output.gif output_light.gif
           git diff --quiet && git diff --staged --quiet || \
             (git commit -m "Update terminal GIF [skip ci]" && git push)
