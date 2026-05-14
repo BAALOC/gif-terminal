@@ -61,10 +61,31 @@ jobs:
           GIFOS_FILES_OUTPUT_GIF_NAME=output_light \
           python generate_with_stats.py
 
-      - name: Commit and push if changed
+      - name: Push GIFs to BAALOC/BAALOC
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add output.gif output_light.gif
-          git diff --quiet && git diff --staged --quiet || \
-            (git commit -m "Update terminal GIF [skip ci]" && git push)
+          push_gif() {
+            local file="$1"
+            local dest="assets/$file"
+            local repo="BAALOC/BAALOC"
+            local sha
+
+            sha=$(gh api "repos/$repo/contents/$dest" --jq '.sha' 2>/dev/null || echo "")
+            local content
+            content=$(base64 -w 0 "$file")
+
+            if [ -n "$sha" ]; then
+              gh api --method PUT "repos/$repo/contents/$dest" \
+                -f message="Update terminal GIF [skip ci]" \
+                -f content="$content" \
+                -f sha="$sha"
+            else
+              gh api --method PUT "repos/$repo/contents/$dest" \
+                -f message="Update terminal GIF [skip ci]" \
+                -f content="$content"
+            fi
+          }
+
+          push_gif output.gif
+          push_gif output_light.gif
