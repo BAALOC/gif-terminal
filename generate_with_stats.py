@@ -127,18 +127,18 @@ t.gen_text("\x1b[96m=== Tech Stack ===\x1b[0m", row_num=3)
 t.clone_frame(3)
 
 skills = [
-    ("\x1b[94mFrameworks:\x1b[0m  ", "Flask, Django"),
-    ("\x1b[94mEditors:\x1b[0m     ", "VS Code, PyCharm, RustRover, CLion, Neovim"),
-    ("\x1b[94mDevOps:\x1b[0m      ", "Git & GitHub, Docker, GitHub Actions"),
-    ("\x1b[94mDatabases:\x1b[0m   ", "PostgreSQL, SQLite"),
-    ("\x1b[94mTools:\x1b[0m       ", "Postman"),
-    ("\x1b[94mOS:\x1b[0m          ", "Linux, macOS, Windows"),
-    ("\x1b[94mPlatforms:\x1b[0m   ", "LeetCode, Codewars"),
+    ("\x1b[94mLanguages:\x1b[0m   ", "Python, Kotlin, Rust, C++"),
+    ("\x1b[94mBackend:\x1b[0m     ", "FastAPI, SQLAlchemy, Alembic"),
+    ("\x1b[94mMobile:\x1b[0m      ", "Android, Jetpack Compose, MVVM"),
+    ("\x1b[94mData:\x1b[0m        ", "PostgreSQL, TimescaleDB"),
+    ("\x1b[94mDevOps:\x1b[0m      ", "Docker Compose, GitHub Actions"),
+    ("\x1b[94mTools:\x1b[0m       ", "Git, Neovim, uv"),
+    ("\x1b[94mOS:\x1b[0m          ", "macOS (Apple Silicon), Linux, Windows"),
 ]
 
 for i, (label, value) in enumerate(skills):
     t.gen_text(f"{label}{value}", row_num=4+i)
-    t.clone_frame(2)
+    t.clone_frame(5)
 
 t.clone_frame(10)
 t.gen_text("\x1b[96m==================\x1b[0m", row_num=4+len(skills))
